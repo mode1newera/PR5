@@ -25,6 +25,9 @@ def show_report(accepted, rejected):
         print("  Нет")
     for number, raw, reason in rejected:
         print(f"  строка {number}: {reason}\n    {raw}")
+    print("\nПо доменам почты:")
+    for domain, count in sorted(Counter(x["email"].split("@")[-1] for x in accepted).items()):
+        print(f"  {domain:<20} {count}")
     print("\nПо группам:")
     for group, count in sorted(Counter(x["group"] for x in accepted).items()):
         print(f"  {group:<8} {count}")
